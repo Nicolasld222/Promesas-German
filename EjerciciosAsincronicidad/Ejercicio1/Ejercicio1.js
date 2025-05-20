@@ -43,4 +43,4 @@ async function ejecutarConLimite(tareas, limite) {
   await Promise.all(ejecuciones);
 }
 
-generarArchivos().catch(console.error);g
+generarArchivos().catch(console.error);
