@@ -95,10 +95,9 @@ async function consultarIA() {
   const prompt = document.getElementById('prompt').value.trim();
   const respuesta = document.getElementById('respuesta');
 
-  if (!prompt) {
-    respuesta.innerHTML = '<strong>Por favor escribe algo.</strong>';
-    return;
-  }
+  if (prompt.toLowerCase().includes("enviar mensaje a discord")) {
+    await enviarMensajeADiscord(prompt);
+    }
 
   respuesta.innerHTML = 'Consultando a Gemini, Cohere y Mistral...';
 
@@ -121,4 +120,31 @@ async function consultarIA() {
     respuesta.innerHTML = `<strong>Error:</strong> ${error.message}`;
     console.error(error);
   }
+
+  async function enviarMensajeADiscord(mensaje) {
+    const webhookURL = "https://discord.com/api/webhooks/1377079748144005130/0r_EWvn7WFpBFi5-eNV_oaozEE1e_SWHSP5Qqz2shp_SuUhUstwAt8G305ZD3RuA7IRT"; // ← reemplaza con tu URL real
+
+    const payload = {
+        content: `💬 Mensaje desde la app web: ${mensaje}`
+    };
+
+    try {
+        const res = await fetch(webhookURL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+        alert("✅ Mensaje enviado al Discord");
+        } else {
+        alert("❌ Error al enviar el mensaje a Discord");
+        }
+    } catch (err) {
+        alert("⚠️ Hubo un problema al conectarse con Discord");
+        console.error("Error al enviar a Discord:", err);
+    }
+    }
 }
