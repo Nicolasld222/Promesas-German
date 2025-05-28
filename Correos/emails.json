@@ -1,0 +1,12 @@
+[
+  {
+    "to": "Correoejemplo@gmail.com",
+    "subject": "Hola Usuario 1",
+    "text": "Este es un mensaje para el usuario 1"
+  },
+  {
+    "to": "Correoejemplo@gmail.com",
+    "subject": "Hola Usuario 2",
+    "text": "Este es un mensaje para el usuario 2"
+  }
+]
